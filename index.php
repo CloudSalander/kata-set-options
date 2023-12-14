@@ -28,16 +28,16 @@ function restArrays(array $array1, array $array2): array {
 	foreach($intersection_array as $element) {
 		$search_array1 = array_search($element, $array1);
 		$search_array2 = array_search($element, $array2);
-		if($search_array1) array_splice($array1,$search_array1);
-		if($search_array2) array_splice($array2,$search_array2);
+		if($search_array1 !== false) array_splice($array1,$search_array1,1);
+		if($search_array2 !== false) array_splice($array2,$search_array2,1);
 	}
-	return array_merge($array1,$array2);
+	return array_unique(array_merge($array1,$array2));
 }
 
-$array1 = [7,2,9,12,5];
-$array2 = [7,2,9,12,5];
+$array1 = [2,3,8];
+$array2 = [2,3,7,8,7];
 
-//var_dump(intersectArrays($array1, $array2));
-var_dump(restArrays($array2, $array1));
+var_dump(operateArrays($array1, $array2,true));
+var_dump(operateArrays($array2, $array1,false));
 
 ?>
